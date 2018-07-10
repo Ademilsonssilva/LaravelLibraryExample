@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -14,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('base.base');
+        $users = \App\User::orderBy('id')->simplePaginate(10);
+        
+        return view('user.index', ['users' => $users]);
     }
 
     /**
@@ -35,7 +38,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());
+        if ($request->input('id') != null ) {
+            $user = User::find($request->input('id'));
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->save();
+        }
+        else {
+            User::create($request->all());
+        }
+
         return redirect()->route('user.index');
     }
 
@@ -58,7 +70,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('user.create', ['user' => $user]);
     }
 
     /**
@@ -70,7 +82,11 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+
+        print_r($user);
+        return 'oi';    
+        //User::update($request->all(), $user);
+        //return redirect()->route('user.index');
     }
 
     /**

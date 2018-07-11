@@ -6,7 +6,8 @@
  */
 
 require('./bootstrap');
-require('sweetalert');
+// require('sweetalert2');
+// window.swal = require('sweetalert2');
 
 // window.Vue = require('vue');
 

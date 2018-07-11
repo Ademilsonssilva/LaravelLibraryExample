@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "hoek": "^5.0.3",
-        "sweetalert": "^2.1.0"
+        "sweetalert": "^2.1.0",
+        "sweetalert2": "^7.25.0"
     }
 }

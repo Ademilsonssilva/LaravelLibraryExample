@@ -1,5 +1,7 @@
 
 window._ = require('lodash');
+require('sweetalert2');
+window.swal = require('sweetalert2');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -37,7 +39,7 @@ try {
     // console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 // }
 
-require('sweetalert');
+// require('sweetalert');
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

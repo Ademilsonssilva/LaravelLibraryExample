@@ -30,6 +30,7 @@
 
 		<!-- SCRIPTS -->
 		<script src="{{ asset('/js/app.js') }}"></script>
+		@include('sweetalert::alert')
 		<!-- ENDSCRIPTS -->
 	</body>
 </html>

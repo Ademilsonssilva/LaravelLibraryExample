@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Swal;
 
 class UserController extends Controller
 {
@@ -41,6 +42,7 @@ class UserController extends Controller
 
         User::create($request->all());
 
+        Swal::success("Success", "User " . $request->input("name") . " successfully registered!");
         return redirect()->route('user.index');
     }
 
@@ -76,6 +78,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {   
         User::update($request->all());
+
+        Swal::success("Success", "User " . $request->input("name") . " successfully updated!");
         return $response->redirectToRoute('user.index');
     }
 

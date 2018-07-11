@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = \App\User::orderBy('id')->simplePaginate(10);
+        $users = \App\User::orderBy('id')->paginate(10);
         
         return view('user.index', ['users' => $users]);
     }
@@ -38,15 +38,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->input('id') != null ) {
-            $user = User::find($request->input('id'));
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
-            $user->save();
-        }
-        else {
-            User::create($request->all());
-        }
+
+        User::create($request->all());
 
         return redirect()->route('user.index');
     }
@@ -70,7 +63,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('user.create', ['user' => $user]);
+        return view('user.create', compact('user'));
     }
 
     /**
@@ -81,12 +74,9 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
-    {
-
-        print_r($user);
-        return 'oi';    
-        //User::update($request->all(), $user);
-        //return redirect()->route('user.index');
+    {   
+        User::update($request->all());
+        return $response->redirectToRoute('user.index');
     }
 
     /**
@@ -97,6 +87,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();    
+        return response()->redirectToRoute('user.index');
     }
 }

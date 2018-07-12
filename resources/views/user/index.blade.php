@@ -16,13 +16,9 @@
 					<td>{{$user->email}}</td>
 					<td>
 						<a class="btn btn-success" href=" {{ route('user.edit', $user->id) }} "> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </a>
-						<form action="{{ route('user.destroy', $user->id) }}" style="display: inline-block;" method="POST">
-							{{csrf_field()}}
-							<input type="hidden" name="_method" value="DELETE">
-							<button type="submit" class="btn btn-danger">
-								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-							</button>
-						</form>
+						@component('components.delete_button', ['route' => route('user.destroy', $user->id), 'type' => 'icon'])
+						
+						@endcomponent
 					</td>
 				</tr>
 			@endforeach

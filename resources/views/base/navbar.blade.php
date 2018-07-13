@@ -20,6 +20,7 @@
 						<li><a href=" {{ route('book.index') }} ">Book</a></li>
 					</ul>
 				</li>
+                                <li><a href=" {{ route('lend.index') }} ">Lends</a></li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->

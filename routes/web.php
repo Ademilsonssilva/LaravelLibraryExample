@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::resource('user', 'UserController');
 Route::resource('book', 'BookController');
+Route::resource('lend', 'LendController');

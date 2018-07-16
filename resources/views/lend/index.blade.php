@@ -13,18 +13,18 @@
 
 		<tbody>
 	    	@foreach ($lends as $lend)
-		
-				<td> {{ $lend->user->name }} </td>
-				<td> {{ $lend->book->name }} </td>
-				<td> {{ $lend->book->author }} </td>
-				<td> {{ $lend->lend_date->format('d/m/Y') }} </td>
-				<td> {{ $lend->getStatus() }} </td>
-				<td> 
-					<a href=" {{ route('lend.devolution', ['lend' => $lend]) }} " class="btn btn-primary " title="devolution">
-						<span class="glyphicon glyphicon-book"></span>
-					</a>
-				</td>
-
+				<tr>
+					<td> {{ $lend->user->name }} </td>
+					<td> {{ $lend->book->name }} </td>
+					<td> {{ $lend->book->author }} </td>
+					<td> {{ $lend->lend_date->format('d/m/Y') }} </td>
+					<td> {{ $lend->getStatus() }} </td>
+					<td> 
+						<a href=" {{ route('lend.devolution', ['lend' => $lend]) }} " class="btn btn-primary " title="devolution">
+							<span class="glyphicon glyphicon-book"></span>
+						</a>
+					</td>
+				</tr>
 	    	@endforeach
     	</tbody>
     </table>

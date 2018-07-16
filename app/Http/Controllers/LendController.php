@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Lend;
 use Illuminate\Http\Request;
+use App\User;
+use Swal;
 
 class LendController extends Controller
 {
@@ -14,7 +16,9 @@ class LendController extends Controller
      */
     public function index()
     {
-        return view('lend.index');
+        $lends = Lend::paginate(10);
+        
+        return view('lend.index', compact('lends'));
     }
 
     /**
@@ -24,7 +28,7 @@ class LendController extends Controller
      */
     public function create()
     {
-        //
+        return '123';
     }
 
     /**
@@ -81,5 +85,25 @@ class LendController extends Controller
     public function destroy(Lend $lend)
     {
         //
+    }
+
+    public function devolution(Lend $lend)
+    {
+        return view('lend.devolution', compact('lend'));
+    }
+
+    public function devolution_post(Request $request, Lend $lend)
+    {
+        $validatedDate = $request->validate([
+            'devolution_date' => 'date|after_or_equal:' . $lend->lend_date->format('Y-m-d'),
+        ]);
+
+        $lend->devolution_date = $request->input('devolution_date');
+
+        $lend->save();
+
+        Swal::success('Success', 'Devolution date successfully registered!');
+        return redirect()->route('lend.index');
+
     }
 }

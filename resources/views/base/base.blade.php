@@ -23,6 +23,24 @@
 		@include('base/header')
 
 		@include('base/navbar')
+		
+		<div class="content">
+			
+			
+			@if(count($errors) > 0) 
+				@component('components.error_message') 
+					<li>
+					@foreach($errors->all() as $error)
+						<item> {{$error}} </item>	
+						
+					@endforeach
+					</li>
+				@endcomponent
+			@endif
+		
+
+		</div>
+		
 
 		<div class="container">
 			@yield('content')
@@ -31,7 +49,15 @@
 		<!-- SCRIPTS -->
 		<script src="{{ asset('/js/app.js') }}"></script>
 		<script src="{{ asset('/js/functions.js') }}"></script>
+		<script src="{{ asset('/js/base.base.js') }}"></script>
 		@include('sweetalert::alert')
+
+		<script>
+			@foreach ($errors->messages() as $key => $error) 
+				$("#{{ $key }}").css('border', '2px solid red');
+			@endforeach
+			@yield('scripts')
+		</script>
 		<!-- ENDSCRIPTS -->
 	</body>
 </html>

@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::resource('user', 'UserController');
 Route::resource('book', 'BookController');
 Route::resource('lend', 'LendController');
+Route::group(['prefix' => 'lend'], function () {
+	Route::get('devolution/{lend}', ['uses' => 'LendController@devolution'])->name('lend.devolution');
+	Route::post('devolution/{lend}', ['uses' => 'LendController@devolution_post'])->name('lend.devolution_post');
+});

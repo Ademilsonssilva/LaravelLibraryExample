@@ -9,5 +9,8 @@ class Book extends Model
 	
 	protected $fillable = ["name", "author", "synopsis", "quantity", "limited"];
 
-
+    public function lends()
+    {
+    	return $this->hasMany('Lend');
+    }
 }

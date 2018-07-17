@@ -26,4 +26,12 @@ class Book extends Model
 
     	return $array;
     }
+
+    public function isAvaliable()
+    {
+    	$openLends = Lend::where('book_id', $this->id)
+    		->whereNull('devolution_date')->count();
+
+    	return ($this->quantity - $openLends) > 0;
+    }
 }

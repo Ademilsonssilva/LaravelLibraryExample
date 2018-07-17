@@ -24,7 +24,12 @@ class Lend extends Model
     public function getStatus()
     {
     	if ($this->devolution_date != '') {
-    		return 'RETURNED';
+            if (Carbon::parse($this->devolution_date) > Carbon::parse($this->lend_date)->addDays($this->days)) {
+                return 'RETURNED LATE';
+            }
+    		else {
+                return 'RETURNED';
+            }
     	}
     	else {
 	    	if (Carbon::now() > Carbon::parse($this->lend_date)->addDays($this->days)) {
@@ -34,5 +39,10 @@ class Lend extends Model
 	    		return 'OPEN';
 	    	}
     	}
+    }
+
+    public function getForecastDate()
+    {
+        return Carbon::parse($this->lend_date)->addDays($this->days);
     }
 }

@@ -18,11 +18,17 @@
 					<td> {{ $lend->book->name }} </td>
 					<td> {{ $lend->book->author }} </td>
 					<td> {{ $lend->lend_date->format('d/m/Y') }} </td>
-					<td> {{ $lend->getStatus() }} </td>
 					<td> 
-						<a href=" {{ route('lend.devolution', ['lend' => $lend]) }} " class="btn btn-primary " title="devolution">
+						@include('lend.status_label', ['status' => $lend->getStatus()])
+					</td>
+					<td> 
+						<a href=" {{ route('lend.devolution', ['lend' => $lend]) }} " class="btn btn-default " title="devolution">
 							<span class="glyphicon glyphicon-book"></span>
 						</a>
+						<a href=" {{ route('lend.show', ['lend' => $lend]) }} " class="btn btn-default" title="show">
+							<span class="glyphicon glyphicon-eye-open"></span>
+						</a>
+
 					</td>
 				</tr>
 	    	@endforeach

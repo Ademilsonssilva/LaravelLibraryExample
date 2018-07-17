@@ -29,8 +29,8 @@ class LendController extends Controller
      */
     public function create()
     {
-        $users = User::getUserComboFormat();
-        $books = Book::getBookComboFormat();
+        $users = User::all()->pluck('name', 'id');
+        $books = Book::all()->pluck('name', 'id');
 
         return view('lend.create', compact('users', 'books'));
     }
@@ -43,7 +43,33 @@ class LendController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'days' => 'required|integer|between:1,14',
+        ]);
+
+        $book = Book::find($request->input('book'));
+
+        if (!$book->isAvaliable()) {
+            Swal::error('Error', 'The required book is not avaliable!');
+            return back()->withInput();
+        }
+
+        $lend = new Lend();
+        $lend->user_id = User::find($request->input('user'))->id;
+        $lend->book_id = $book->id;
+        $lend->days = $request->input('days');
+        $lend->lend_date = \Carbon\Carbon::today();
+
+        try {
+            $lend->save();
+            Swal::success("Success", "Operation successfully registered!");
+            return redirect()->route('lend.index');
+        }
+        catch (Exception $e) {
+            Swal::error("Error", "Something went wrong!");
+            return redirect()->route('lend.index');   
+        }
+
     }
 
     /**
@@ -54,7 +80,7 @@ class LendController extends Controller
      */
     public function show(Lend $lend)
     {
-        //
+        return view('lend.show', compact('lend'));
     }
 
     /**

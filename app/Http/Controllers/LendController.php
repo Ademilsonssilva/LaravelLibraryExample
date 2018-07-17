@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Lend;
 use Illuminate\Http\Request;
 use App\User;
+use App\Book;
 use Swal;
 
 class LendController extends Controller
@@ -28,7 +29,10 @@ class LendController extends Controller
      */
     public function create()
     {
-        return '123';
+        $users = User::getUserComboFormat();
+        $books = Book::getBookComboFormat();
+
+        return view('lend.create', compact('users', 'books'));
     }
 
     /**

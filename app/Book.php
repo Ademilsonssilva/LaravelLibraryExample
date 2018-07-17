@@ -13,4 +13,17 @@ class Book extends Model
     {
     	return $this->hasMany('Lend');
     }
+
+    public static function getBookComboFormat()
+    {
+    	$books = Book::all();
+
+    	$array = [];
+    	foreach ($books as $book) {
+    		$r = ['id' => $book->id, 'value' => $book->author . " - " . $book->name];
+    		$array[] = $r;
+    	}
+
+    	return $array;
+    }
 }

@@ -15,7 +15,7 @@
 					<td>{{$user->name}}</td>
 					<td>{{$user->email}}</td>
 					<td>
-						<a class="btn btn-success" href=" {{ route('user.edit', $user->id) }} "> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </a>
+						<a class="btn btn-default btn-sm" href=" {{ route('user.edit', $user->id) }} "> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> </a>
 						@component('components.delete_button', ['route' => route('user.destroy', $user->id), 'type' => 'icon'])
 						
 						@endcomponent

@@ -22,10 +22,10 @@
 						@include('lend.status_label', ['status' => $lend->getStatus()])
 					</td>
 					<td> 
-						<a href=" {{ route('lend.devolution', ['lend' => $lend]) }} " class="btn btn-default " title="devolution">
+						<a href=" {{ route('lend.devolution', ['lend' => $lend]) }} " class="btn btn-default btn-sm" title="devolution">
 							<span class="glyphicon glyphicon-book"></span>
 						</a>
-						<a href=" {{ route('lend.show', ['lend' => $lend]) }} " class="btn btn-default" title="show">
+						<a href=" {{ route('lend.show', ['lend' => $lend]) }} " class="btn btn-default btn-sm" title="show">
 							<span class="glyphicon glyphicon-eye-open"></span>
 						</a>
 
@@ -34,6 +34,10 @@
 	    	@endforeach
     	</tbody>
     </table>
+	<center>
+		{{ $lends->links() }}
+	</center>
+
     <a href="{{route('lend.create')}}" class="btn btn-success">
     	<span class="glyphicon glyphicon-plus"></span>
     </a>

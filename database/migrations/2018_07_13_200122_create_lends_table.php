@@ -19,7 +19,7 @@ class CreateLendsTable extends Migration
             $table->unsignedInteger('book_id');
             $table->integer('days')->default(7);
             $table->date('lend_date');
-            $table->date('devolution_date');
+            $table->date('devolution_date')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('book_id')->references('id')->on('books');
             $table->timestamps();

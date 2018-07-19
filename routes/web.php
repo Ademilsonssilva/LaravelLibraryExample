@@ -22,3 +22,11 @@ Route::group(['prefix' => 'lend'], function () {
 	Route::get('devolution/{lend}', ['uses' => 'LendController@devolution'])->name('lend.devolution');
 	Route::post('devolution/{lend}', ['uses' => 'LendController@devolution_post'])->name('lend.devolution_post');
 });
+
+Route::group(['prefix' => 'report'], function () {
+	Route::get('lends_by_user', ['uses' => 'ReportController@lendsByUser'])->name('report.lends_by_user');
+	Route::get('lends_by_book', ['uses' => 'ReportController@lendsByBook'])->name('report.lends_by_book');
+
+	Route::post('lends_by_user', ['uses' => 'ReportController@lendsByUserGenerate'])->name('report.lends_by_user_generate');
+	Route::post('lends_by_book', ['uses' => 'ReportController@lendsByBookGenerate'])->name('report.lends_by_book_generate');
+});

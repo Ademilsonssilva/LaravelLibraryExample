@@ -22,6 +22,13 @@
 					</ul>
 				</li>
                 <li><a href=" {{ route('lend.index') }} ">Lends</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href=" {{ route('report.lends_by_user') }} ">Lends by User</a></li>
+						<li><a href=" {{ route('report.lends_by_book') }} ">Lends by Book</a></li>
+					</ul>
+				</li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->

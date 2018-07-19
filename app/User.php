@@ -10,7 +10,7 @@ class User extends Model
 
     public function lends()
     {
-    	return $this->hasMany('Lend');
+    	return $this->hasMany('\App\Lend');
     }
 
     public static function getUserComboFormat()

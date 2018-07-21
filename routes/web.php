@@ -26,7 +26,9 @@ Route::group(['prefix' => 'lend'], function () {
 Route::group(['prefix' => 'report'], function () {
 	Route::get('lends_by_user', ['uses' => 'ReportController@lendsByUser'])->name('report.lends_by_user');
 	Route::get('lends_by_book', ['uses' => 'ReportController@lendsByBook'])->name('report.lends_by_book');
+	Route::get('lends_by_period', ['uses' => 'ReportController@lendsByPeriod'])->name('report.lends_by_period');
 
 	Route::post('lends_by_user', ['uses' => 'ReportController@lendsByUserGenerate'])->name('report.lends_by_user_generate');
 	Route::post('lends_by_book', ['uses' => 'ReportController@lendsByBookGenerate'])->name('report.lends_by_book_generate');
+	Route::post('lends_by_period', ['uses' => 'ReportController@lendsByPeriodGenerate'])->name('report.lends_by_period_generate');
 });

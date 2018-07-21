@@ -41,8 +41,46 @@ class Lend extends Model
     	}
     }
 
+    public function getStatusBootstrapClass ()
+    {
+        switch ($this->getStatus()) {
+            case 'OPEN':
+                return 'info';
+                break;
+            case 'LATE':
+                return 'warning';
+                break;
+            case 'RETURNED':
+                return 'success';
+                break;
+            case 'RETURNED LATE':
+                return 'danger';
+                break;
+        }
+    }
+
     public function getForecastDate()
     {
         return Carbon::parse($this->lend_date)->addDays($this->days);
+    }
+
+    public function getDevolutionDate($formated = true)
+    {
+        if ($this->devolution_date != '') {
+            return $formated ? $this->devolution_date->format('d/m/Y') : $this->devolution_date;
+        }
+        else {
+            return $formated ? 'PENDING' : null;
+        }
+    }
+
+    public static function orderLendsByDate ($lends)
+    {
+        $dates_array = [];
+        foreach ($lends as $lend) {
+            $dates_array[$lend->lend_date->format('d/m/Y')][] = $lend;
+        }
+
+        return $dates_array;
     }
 }

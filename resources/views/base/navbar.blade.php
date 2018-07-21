@@ -27,6 +27,7 @@
 					<ul class="dropdown-menu">
 						<li><a href=" {{ route('report.lends_by_user') }} ">Lends by User</a></li>
 						<li><a href=" {{ route('report.lends_by_book') }} ">Lends by Book</a></li>
+						<li><a href=" {{ route('report.lends_by_period') }} ">Lends by Period</a></li>
 					</ul>
 				</li>
 			</ul>
